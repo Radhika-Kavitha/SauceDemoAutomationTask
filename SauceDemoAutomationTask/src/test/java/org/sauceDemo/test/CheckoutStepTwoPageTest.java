@@ -18,7 +18,7 @@ public class CheckoutStepTwoPageTest extends Base
 	@Test
 	public void verifyAddedProductintheCart() throws IOException
 	{
-		String userName = ExcelUtility.stringDataRead(0, 0, Constants.LOGIN_PAGE_DATA);
+		String userName = ExcelUtility.stringDataRead(1, 0, Constants.LOGIN_PAGE_DATA);
 		String password = ExcelUtility.stringDataRead(2, 0, Constants.LOGIN_PAGE_DATA);
 		String firstName = ExcelUtility.stringDataRead(0, 0, Constants.CHECKOUT_STEPONE_PAGE_DATA);
 		String lastName = ExcelUtility.stringDataRead(1, 0, Constants.CHECKOUT_STEPONE_PAGE_DATA);

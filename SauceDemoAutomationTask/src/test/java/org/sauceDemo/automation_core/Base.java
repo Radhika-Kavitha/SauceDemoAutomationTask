@@ -10,10 +10,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.sauceDemo.utilities.WaitUtility;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
 public class Base 
 {
@@ -41,12 +41,12 @@ public class Base
 	}
 	
 	@BeforeMethod(alwaysRun = true)
-	//@Parameters({"browser", "baseurl"})
-	public void setUp()
+	@Parameters({"browser", "baseurl"})
+	public void setUp(String browsername, String url)
 	{
-		initializeBrowser("Chrome");
-		driver.get("https://www.saucedemo.com/");
-		WaitUtility.waitUsingImplicityWait(driver);
+		initializeBrowser(browsername);
+		driver.get(url);
+		
 	}
 	
 	@AfterMethod(alwaysRun = true)

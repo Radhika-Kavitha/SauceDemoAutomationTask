@@ -19,7 +19,7 @@ public class CartPageTest extends Base
 	@Test
 	public void verifyAddedFirstThreeLowPriceProductintheCart() throws IOException
 	{
-		String userName = ExcelUtility.stringDataRead(0, 0, Constants.LOGIN_PAGE_DATA);
+		String userName = ExcelUtility.stringDataRead(1, 0, Constants.LOGIN_PAGE_DATA);
 		String password = ExcelUtility.stringDataRead(2, 0, Constants.LOGIN_PAGE_DATA);
 		
 		LoginPage loginObj = new LoginPage(driver);

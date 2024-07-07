@@ -16,7 +16,7 @@ public class HomePageTest extends Base
 	@Test
 	public void verifyProductSortedByNameAtoZ() throws IOException 
 	{
-		String userName = ExcelUtility.stringDataRead(0, 0, Constants.LOGIN_PAGE_DATA);
+		String userName = ExcelUtility.stringDataRead(1, 0, Constants.LOGIN_PAGE_DATA);
 		String password = ExcelUtility.stringDataRead(2, 0, Constants.LOGIN_PAGE_DATA);
 		LoginPage loginObj = new LoginPage(driver);
 		loginObj.enterUserName(userName);
@@ -31,7 +31,7 @@ public class HomePageTest extends Base
 	@Test
 	public void verifyProductSortedByNameZtoA() throws IOException 
 	{
-		String userName = ExcelUtility.stringDataRead(0, 0, Constants.LOGIN_PAGE_DATA);
+		String userName = ExcelUtility.stringDataRead(1, 0, Constants.LOGIN_PAGE_DATA);
 		String password = ExcelUtility.stringDataRead(2, 0, Constants.LOGIN_PAGE_DATA);
 		LoginPage loginObj = new LoginPage(driver);
 		loginObj.enterUserName(userName);
@@ -46,7 +46,7 @@ public class HomePageTest extends Base
 	@Test
 	public void verifyProductSortedByPriceHtoL() throws IOException
 	{
-		String userName = ExcelUtility.stringDataRead(0, 0, Constants.LOGIN_PAGE_DATA);
+		String userName = ExcelUtility.stringDataRead(1, 0, Constants.LOGIN_PAGE_DATA);
 		String password = ExcelUtility.stringDataRead(2, 0, Constants.LOGIN_PAGE_DATA);
 		LoginPage loginObj = new LoginPage(driver);
 		loginObj.enterUserName(userName);
@@ -61,7 +61,7 @@ public class HomePageTest extends Base
 	@Test
 	public void verifyProductSortedByPriceLtoH() throws IOException
 	{
-		String userName = ExcelUtility.stringDataRead(0, 0, Constants.LOGIN_PAGE_DATA);
+		String userName = ExcelUtility.stringDataRead(1, 0, Constants.LOGIN_PAGE_DATA);
 		String password = ExcelUtility.stringDataRead(2, 0, Constants.LOGIN_PAGE_DATA);
 		LoginPage loginObj = new LoginPage(driver);
 		loginObj.enterUserName(userName);

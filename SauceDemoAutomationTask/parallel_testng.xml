@@ -2,18 +2,31 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Functional Suite">
 	<listeners>
-		<listener class-name="org.sauceDemo.listeners.Extent_Listeners" />
 		<listener class-name="org.sauceDemo.listeners.Annotation_Transformer" />
 	</listeners>
-	<test name="Test">
+	<test name="LoginTestingInChrome">
 		<parameter name="browser" value="Chrome" />
 		<parameter name="baseurl"
 			value="https://www.saucedemo.com/" />
 		<classes>
 			<class name="org.sauceDemo.test.LoginPageTest" />
 			<class name="org.sauceDemo.test.HomePageTest" />
+		</classes>
+	</test>
+	<test name="CartTestingInEdge">
+		<parameter name="browser" value="Edge" />
+		<parameter name="baseurl"
+			value="https://www.saucedemo.com/" />
+		<classes>
 			<class name="org.sauceDemo.test.CartPageTest" />
 			<class name="org.sauceDemo.test.CheckoutStepOnePageTest" />
+		</classes>
+	</test>
+	<test name="CheckoutTestingInFirefox">
+		<parameter name="browser" value="Firefox" />
+		<parameter name="baseurl"
+			value="https://www.saucedemo.com/" />
+		<classes>
 			<class name="org.sauceDemo.test.CheckoutStepTwoPageTest" />
 			<class name="org.sauceDemo.test.CheckoutCompletePageTest" />
 		</classes>

@@ -9,6 +9,9 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.configuration.ChartLocation;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
+/**
+ * Manages the creation and configuration of ExtentReports for generating HTML reports.
+ */
 public class ExtentManager 
 {
 	public static ExtentReports extent;
@@ -19,6 +22,10 @@ public class ExtentManager
     private static final String macReportFileLoc = macPath + "/" + reportFileName;
     private static final String winReportFileLoc = windowsPath + "\\" + reportFileName;
 
+    /**
+     * Returns the singleton instance of ExtentReports.
+     * @return ExtentReports instance
+     */
     public static ExtentReports getInstance() 
     {
         if (extent == null)
@@ -26,6 +33,10 @@ public class ExtentManager
         return extent;
     }
 
+    /**
+     * Creates a new instance of ExtentReports with configuration settings and attaches an HTML reporter.
+     * @return ExtentReports instance
+     */
     public static ExtentReports createInstance()
     {
         platform = getCurrentPlatform();
@@ -44,6 +55,11 @@ public class ExtentManager
         return extent;
     }
 
+    /**
+     * Determines the file location for the HTML report based on the current platform.
+     * @param platform The current platform (MAC, WINDOWS)
+     * @return File location as a String
+     */
     private static String getReportFileLocation(Platform platform) 
     {
         String reportFileLocation = null;
@@ -66,6 +82,10 @@ public class ExtentManager
         return reportFileLocation;
     }
 
+    /**
+     * Creates the directory path if it does not already exist.
+     * @param path The directory path to be created
+     */
     private static void createReportPath(String path) 
     {
         File testDirectory = new File(path);
@@ -84,6 +104,10 @@ public class ExtentManager
         }
     }
 
+    /**
+     * Determines the current platform (OS) where the code is executing.
+     * @return Current platform (WINDOWS, MAC, LINUX)
+     */
     private static Platform getCurrentPlatform()
     {
         if (platform == null) 

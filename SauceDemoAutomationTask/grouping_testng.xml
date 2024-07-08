@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Functional Suite">
+	<groups>
+		<run>
+			<include name="Smoke" />
+			<include name="Sanity" />
+			<include name="Regression" />
+		</run>
+	</groups>
 	<listeners>
 		<listener class-name="org.sauceDemo.listeners.Extent_Listeners" />
-		<listener class-name="org.sauceDemo.listeners.Annotation_Transformer" />
+
 	</listeners>
 	<test name="Test">
 		<parameter name="browser" value="Chrome" />
@@ -18,6 +25,4 @@
 			<class name="org.sauceDemo.test.CheckoutCompletePageTest" />
 		</classes>
 	</test>
-
-
 </suite>

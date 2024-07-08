@@ -12,7 +12,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.sauceDemo.utilities.WebElementUtilities;
 
 
-
+/**
+ * Page Object Model (POM) class representing the home page of the application.
+ */
 public class HomePage
 {
 
@@ -47,117 +49,74 @@ public class HomePage
 	@FindBy(xpath = "//span[text()='Products']")
 	WebElement home_Verification;
 	
-	public boolean selectHomePageDropDownSortingNameAtoZ()
-	{
-			//Select select = new Select(homepage_sortDropdown);
-			//select.selectByVisibleText("Name (A to Z)");
-		homepage_sortDropdown.click();
-		homepage_invantoryList_NameAtoZ.click();
-				// Extract product names
-		List<String> productNames = new ArrayList<>();
-        for (WebElement element : homepage_invantoryItemName) {
-            productNames.add(element.getText());
-            //System.out.println(element.getText());
-        }
-        		// Create a copy of the list and sort it
+	@FindBy(xpath = "//div[starts-with(text(), 'Sauce Labs')]")
+	List <WebElement> productNamesList;
+
+	
+	/**
+     * Selects sorting by "Name (A to Z)" and verifies if the products are sorted correctly.
+     *
+     * @return true if products are sorted correctly, false otherwise
+     * @throws InterruptedException if the thread is interrupted
+     */
+    public boolean verifySortingByNameAtoZ() throws InterruptedException {
+        WebElementUtilities.selectDropDownByVisibleText(homepage_sortDropdown, "Name (A to Z)");
+        Thread.sleep(1000); // Add a wait time if necessary
+        List<String> productNames = WebElementUtilities.extractTextFromElements(homepage_invantoryItemName);
         List<String> sortedProductNames = new ArrayList<>(productNames);
         Collections.sort(sortedProductNames);
-        
-        		// Verify if the product names are sorted correctly
-        if (productNames.equals(sortedProductNames)) {
-        	return true;
-            //System.out.println("Products are sorted by name correctly.");
-        } else {
-            return false;
-            //System.out.println("Products are NOT sorted by name correctly.");
-        }
-		
-	}
-	public boolean selectHomePageDropDownSortingNameZtoA()
-	{
-				//Select select = new Select(homepage_Dropdown);
-				//select.selectByVisibleText("Name (Z to A)");
-		homepage_sortDropdown.click();
-		homepage_invantoryList_NameZtoA.click();
-				// Extract product names
-        List<String> productNames = new ArrayList<>();
-        for (WebElement element : homepage_invantoryItemName) {
-            productNames.add(element.getText());
-           // System.out.println(element.getText());
-        }
-        		// Create a copy of the list and sort it
+        return productNames.equals(sortedProductNames);
+    }
+    
+    /**
+     * Selects sorting by "Name (Z to A)" and verifies if the products are sorted correctly.
+     *
+     * @return true if products are sorted correctly, false otherwise
+     * @throws InterruptedException if the thread is interrupted
+     */
+    public boolean verifySortingByNameZtoA() throws InterruptedException {
+        WebElementUtilities.selectDropDownByVisibleText(homepage_sortDropdown, "Name (Z to A)");
+        Thread.sleep(1000); // Add a wait time if necessary
+        List<String> productNames = WebElementUtilities.extractTextFromElements(homepage_invantoryItemName);
         List<String> sortedProductNames = new ArrayList<>(productNames);
-        Collections.sort(sortedProductNames);
-        
-        		// Verify if the product names are sorted correctly
-        if (productNames.equals(sortedProductNames)) 
-        {
-        	return false;
-            //System.out.println("Products are NOT sorted by name correctly.");
-        } else 
-        {
-            return true;
-        	//System.out.println("Products are sorted by name correctly.");
-        }
-	}
-	public boolean selectHomePageDropDownSortingPriceLowtoHigh()
-	{
-				//Select select = new Select(homepage_Dropdown);
-				//select.selectByVisibleText("Price (low to high)");
-		homepage_sortDropdown.click();
-		homepage_invantoryList_PriceLtoH.click();
-				// Extract product prices
-        List<Double> actualPrices = new ArrayList<>();
-        for (WebElement priceElement : homepage_invantoryItemPrice) {
-        	String priceText = priceElement.getText().replace("$", "");
-            actualPrices.add(Double.parseDouble(priceText));
-            //System.out.println(priceText);
-        }
-        		// Create a copy of the list and sort it
+        Collections.sort(sortedProductNames, Collections.reverseOrder());
+        return productNames.equals(sortedProductNames);
+    }
+    
+    /**
+     * Selects sorting by "Price (low to high)" and verifies if the products are sorted correctly.
+     *
+     * @return true if products are sorted correctly, false otherwise
+     * @throws InterruptedException if the thread is interrupted
+     */
+    public boolean verifySortingByPriceLowToHigh() throws InterruptedException {
+        WebElementUtilities.selectDropDownByVisibleText(homepage_sortDropdown, "Price (low to high)");
+        Thread.sleep(1000); // Add a wait time if necessary
+        List<Double> actualPrices = WebElementUtilities.extractPricesFromElements(homepage_invantoryItemPrice);
         List<Double> sortedProductPrices = new ArrayList<>(actualPrices);
         Collections.sort(sortedProductPrices);
-       
-
-        		// Verify if the product prices are sorted correctly
-        if (actualPrices.equals(sortedProductPrices)) 
-        {
-        	return true;
-            //System.out.println("Products are sorted by price correctly.");
-        } else 
-        {
-            return false;
-        	//System.out.println("Products are NOT sorted by price correctly.");
-        }
-	}
-	public boolean selectHomePageDropDownSortingPriceHightoLow()
-	{
-				//Select select = new Select(homepage_Dropdown);
-				//select.selectByVisibleText("Price (high to low)");
-		homepage_sortDropdown.click();
-		homepage_invantoryList_PriceHtoL.click();
-				
-        List<Double> actualPrices = new ArrayList<>();
-        for (WebElement priceElement : homepage_invantoryItemPrice) {
-            String priceText = priceElement.getText().replace("$", "");
-            actualPrices.add(Double.parseDouble(priceText));
-            //System.out.println(priceText);
-        }
-        		// Create a sorted copy of product prices (ascending order)
-        List<Double> expectedPrices = new ArrayList<>(actualPrices);
-        Collections.sort(expectedPrices);
-
-        		// Verify if actual and expected prices match
-        if (actualPrices.equals(expectedPrices)) 
-        {
-            return true;
-        	//System.out.println("Products are sorted by Price (low to high) - PASS");
-        } else 
-        {
-           return false;
-        	//System.out.println("Products are NOT sorted by Price (low to high) - FAIL");
-        }
-	}
-	
+        return actualPrices.equals(sortedProductPrices);
+    }
+    
+    /**
+     * Selects sorting by "Price (high to low)" and verifies if the products are sorted correctly.
+     *
+     * @return true if products are sorted correctly, false otherwise
+     * @throws InterruptedException if the thread is interrupted
+     */
+    public boolean verifySortingByPriceHighToLow() throws InterruptedException {
+        WebElementUtilities.selectDropDownByVisibleText(homepage_sortDropdown, "Price (high to low)");
+        Thread.sleep(1000); // Add a wait time if necessary
+        List<Double> actualPrices = WebElementUtilities.extractPricesFromElements(homepage_invantoryItemPrice);
+        List<Double> sortedProductPrices = new ArrayList<>(actualPrices);
+        Collections.sort(sortedProductPrices, Collections.reverseOrder());
+        return actualPrices.equals(sortedProductPrices);
+    }
+   
+    /**
+     * Adds the first three low-priced products to the cart based on their position in the addToCartButtons list.
+     * The addToCartButtons list represents "Add To Cart" buttons in the order of product appearance.
+     */
 	public void addFirstThreeLowPriceProductsToCart() 
 	{
         for (int i = 0; i < 3; i++) {
@@ -165,17 +124,32 @@ public class HomePage
         }
     }
 	
+	/**
+     * Clicks on the shopping cart icon and returns a new CartPage object.
+     * The shopping_cart_icon WebElement represents the shopping cart icon on the page.
+     * @return the CartPage .
+     */
 	public CartPage clickOnCartButton()
 	{
 		WebElementUtilities.clickOnElement(shopping_cart_icon);
 		return new CartPage(driver);
 	}
 	
+	/**
+     * Gets a list of product names from the first three elements of the homepage_invantoryItemName list.
+     * The homepage_invantoryItemName list represents product names displayed on the homepage.
+     * @return A List containing the names of the first three products on the homepage.
+     */
 	public List<String> getAddedProductNames() 
 	{
         return homepage_invantoryItemName.stream().limit(3).map(WebElement::getText).toList();
     }
 	
+	 /**
+     * Gets the text content of the home_Verification WebElement.
+     * The home_Verification WebElement represents a verification message on the homepage.
+     * @return The text content of the home_Verification WebElement.
+     */
 	public String getHomeVerificationMessage()
 	{
 		String text = WebElementUtilities.getText(home_Verification);
